@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansarirehan.com | F1 Stats</title>
+    <style>
+        :root {
+            --rgb-speed: 10s;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            /* RGB Animated Background */
+            background: linear-gradient(-45deg, #ff0000, #0000ff, #000000, #ff0000);
+            background-size: 400% 400%;
+            animation: gradientBG var(--rgb-speed) ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Top Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Glossy Search Bar */
+        #driverSearch {
+            width: 300px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #driverSearch:focus {
+            width: 400px;
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        /* News & Results Container */
+        .content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .driver-card {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none; /* Hidden until search */
+        }
+
+        .news-ticker {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ANSARI REHAN</div>
+        <div class="search-container">
+            <input type="text" id="driverSearch" placeholder="Search F1 Driver (e.g. Hamilton)...">
+        </div>
+    </header>
+
+    <div class="news-ticker">
+        LATEST NEWS: Ferrari shows strong pace in testing... Verstappen leads championship...
+    </div>
+
+    <div class="content">
+        <div id="resultArea" class="driver-card">
+            </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('driverSearch');
+        const resultArea = document.getElementById('resultArea');
+
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const driver = searchInput.value;
+                showDriver(driver);
+            }
+        });
+
+        function showDriver(name) {
+            // This is a mockup of how your data will appear
+            resultArea.style.display = 'block';
+            resultArea.innerHTML = `
+                <h2>${name.toUpperCase()}</h2>
+                <p><strong>Place of Birth:</strong> Stevenage, UK</p>
+                <p><strong>Race Wins:</strong> 105</p>
+                <p><strong>World Titles:</strong> 7</p>
+                <hr>
+                <p><strong>Previous Teams:</strong> McLaren (2007-2012), Mercedes (2013-2024)</p>
+                <p><strong>Status:</strong> All-time Legend</p>
+            `;
+        }
+    </script>
+</body>
+</html>
